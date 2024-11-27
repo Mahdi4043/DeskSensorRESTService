@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PlayGroundLib
+namespace DeskSensorRESTService.Models
 {
-    public class DeskRepositoryDb : IDesk
+    public class DeskRepoDb : IDesk
     {
         private readonly DeskDbContext _context;
-        public DeskRepositoryDb(DeskDbContext dbContext)
+        public DeskRepoDb(DeskDbContext dbContext)
         {
             _context = dbContext;
         }
