@@ -30,10 +30,10 @@ namespace DeskSensorRESTService.Models
             return desk;
         }
 
-        public IEnumerable<Desk> Get()
+        public List<Desk> Get()
         {
             //List<Movie> result = _context.Movies.ToList();
-            IEnumerable<Desk> query = _context.Desk.ToList();
+            List<Desk> query = _context.Desk.ToList();
             // Copy ToList()
             return query;
         }
