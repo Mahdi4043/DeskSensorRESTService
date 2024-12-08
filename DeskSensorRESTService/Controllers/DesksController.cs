@@ -34,7 +34,7 @@ namespace DeskSensorRESTService.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("{id}")]
-        public ActionResult<Desk> Get(int id)
+        public ActionResult<Desk> GetId(int id)
         {
             Desk? desk = _desks.GetById(id);
             if (desk == null) return NotFound("No such desk, id: " + id);
@@ -80,30 +80,18 @@ namespace DeskSensorRESTService.Controllers
             return NoContent();
         }
 
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPost("updateOccupied")]
-        public IActionResult UpdateOccupied([FromBody] Desk desk)
-        {
-            if (desk == null)
+        public IActionResult Delete(int id) 
+        {   
+            if (id != null)
             {
-                return BadRequest("Desk object is null.");
+                var Desk = _desks.GetById(id);
+                _desks.Delete(Desk.Id);
+                return Ok(Desk);
             }
 
-            Desk? updatedDesk = _desks.UpdateOccupied(desk.Id, desk);
-
-            if (updatedDesk == null)
-            {
-                return NotFound($"Desk with ID {desk.Id} not found.");
-            }
-
-            return Ok(updatedDesk);
+            return NotFound($"Desk with ID {id} not found.");
         }
-
-        // DELETE api/<DesksController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }

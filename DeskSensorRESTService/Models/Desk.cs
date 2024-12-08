@@ -1,4 +1,5 @@
-﻿using static System.Net.Mime.MediaTypeNames;
+﻿using Microsoft.EntityFrameworkCore;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DeskSensorRESTService.Models
 {
@@ -7,6 +8,16 @@ namespace DeskSensorRESTService.Models
         public int Id { get; set; }
         public string? Name { get; set; }
         public bool Occupied { get; set; }
+
+        
+        public void validatepropperties()
+        {
+            if (Name == null || Name.Length == 0)
+            {
+                throw new ArgumentException("Name cannot be null or empty.");
+            }
+
+        }
 
         public override string ToString()
         {
