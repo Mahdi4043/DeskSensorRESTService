@@ -4,8 +4,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      //"applicationUrl": "http://localhost:34346",
-      "applicationUrl": "https://desksensor.azurewebsites.net",
+      "applicationUrl": "http://localhost:34346",
+      "applicationUrl": "api/Desks",
 
       "sslPort": 0
     }
@@ -15,9 +15,8 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "swagger",
-      //"applicationUrl": "http://localhost:5077",
-      "applicationUrl": "https://desksensor.azurewebsites.net",
+      "launchUrl": "api/Desks",
+      "applicationUrl": "http://localhost:5077",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
