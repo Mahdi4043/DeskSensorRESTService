@@ -68,7 +68,6 @@ namespace DeskSensorRESTService.Controllers
                 return BadRequest("Desk object is null or ID mismatch.");
             }
 
-            // Attempt to update the PlayGround
             Desk? updatedDesk = _desks.Update(id, desk);
 
             if (updatedDesk == null)
@@ -82,8 +81,8 @@ namespace DeskSensorRESTService.Controllers
 
         //[ProducesResponseType(StatusCodes.Status400BadRequest)]
         //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //public IActionResult Delete(int id) 
-        //{   
+        //public IActionResult Delete(int id)
+        //{
         //    if (id != null)
         //    {
         //        var Desk = _desks.GetById(id);

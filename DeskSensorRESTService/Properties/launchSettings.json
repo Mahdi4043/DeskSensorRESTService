@@ -16,8 +16,8 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5077",
-     // "applicationUrl": "https://desksensor.azurewebsites.net",
+     "applicationUrl": "http://localhost:5077",
+     //"applicationUrl": "https://desksensor.azurewebsites.net",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
