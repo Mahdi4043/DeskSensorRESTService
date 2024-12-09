@@ -5,7 +5,7 @@
     "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:34346",
-      "applicationUrl": "api/Desks",
+      //"applicationUrl": "https://desksensor.azurewebsites.net",
 
       "sslPort": 0
     }
@@ -15,8 +15,9 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
-      "launchUrl": "api/Desks",
+      "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5077",
+     // "applicationUrl": "https://desksensor.azurewebsites.net",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

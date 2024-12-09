@@ -21,13 +21,13 @@ namespace DeskSensorRESTService.Models
         public Desk Add(Desk desk)
         {
 
-            foreach (var item in _context.Desk)
-            {
-                if (item.Name == desk.Name)
-                {
-                    UpdateOccupied(desk);
-                }
-            }
+            //foreach (var item in _context.Desk)
+            //{
+            //    if (item.Name == desk.Name)
+            //    {
+            //        UpdateOccupied(desk);
+            //    }
+            //}
             desk.Id = 0;
             _context.Add(desk);
             _context.SaveChanges();
@@ -36,9 +36,7 @@ namespace DeskSensorRESTService.Models
 
         public List<Desk> Get()
         {
-            //List<Movie> result = _context.Movies.ToList();
             List<Desk> query = _context.Desk.ToList();
-            // Copy ToList()
             return query; 
         }
 
@@ -74,10 +72,10 @@ namespace DeskSensorRESTService.Models
                 return null;
             }
         
-            if (exsisting.Name == updatedDesk.Name)
-            {
-               UpdateOccupied(updatedDesk);
-            }
+            //if (exsisting.Name == updatedDesk.Name)
+            //{
+            //   UpdateOccupied(updatedDesk);
+            //}
 
             exsisting.Name = updatedDesk.Name;
             exsisting.Occupied = updatedDesk.Occupied;
@@ -85,15 +83,15 @@ namespace DeskSensorRESTService.Models
             return exsisting;
         }
 
-        public Desk? UpdateOccupied(Desk updatedDesk)
-        { 
-            var desk = _context.Desk.Find(updatedDesk);
-            if (desk != null)
-            {
-                desk.Occupied = updatedDesk.Occupied;
-                _context.SaveChanges();
-            }
-            return desk;
-        }
+        //public Desk? UpdateOccupied(Desk updatedDesk)
+        //{ 
+        //    var desk = _context.Desk.Find(updatedDesk);
+        //    if (desk != null)
+        //    {
+        //        desk.Occupied = updatedDesk.Occupied;
+        //        _context.SaveChanges();
+        //    }
+        //    return desk;
+        //}
     }
 }

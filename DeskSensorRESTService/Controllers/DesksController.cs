@@ -80,18 +80,18 @@ namespace DeskSensorRESTService.Controllers
             return NoContent();
         }
 
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Delete(int id) 
-        {   
-            if (id != null)
-            {
-                var Desk = _desks.GetById(id);
-                _desks.Delete(Desk.Id);
-                return Ok(Desk);
-            }
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public IActionResult Delete(int id) 
+        //{   
+        //    if (id != null)
+        //    {
+        //        var Desk = _desks.GetById(id);
+        //        _desks.Delete(Desk.Id);
+        //        return Ok(Desk);
+        //    }
 
-            return NotFound($"Desk with ID {id} not found.");
-        }
+        //    return NotFound($"Desk with ID {id} not found.");
+        //}
     }
 }
