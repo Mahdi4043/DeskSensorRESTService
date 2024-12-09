@@ -20,18 +20,26 @@ namespace DeskSensorRESTService.Models
 
         public Desk Add(Desk desk)
         {
-            // Check if a desk with the same name already exists in the context using LINQ
+            // Check if a desk with the same name already exists
             var existingDesk = _context.Desk.FirstOrDefault(d => d.Name == desk.Name);
+
             if (existingDesk != null)
             {
-                UpdateOccupied(desk); // Call the method if a desk with the same name is found
+                // Update the Occupied status of the existing desk
+                existingDesk.Occupied = desk.Occupied;
+                _context.SaveChanges(); // Save the changes
+                return existingDesk; // Return the updated desk
             }
-
-            desk.Id = 0; // Ensure the ID is reset for a new entry
-            _context.Add(desk);
-            _context.SaveChanges();
-            return desk;
+            else
+            {
+                // Add a new desk if none exists with the given name
+                desk.Id = 0; // Reset the ID for new entry
+                _context.Add(desk);
+                _context.SaveChanges();
+                return desk; // Return the newly added desk
+            }
         }
+
 
         public List<Desk> Get()
         {
@@ -76,15 +84,15 @@ namespace DeskSensorRESTService.Models
             return exsisting;
         }
 
-        public Desk? UpdateOccupied(Desk updatedDesk)
-        {
-            var desk = _context.Desk.FirstOrDefault(d => d.Name == updatedDesk.Name);
-            if (desk != null)
-            {
-                desk.Occupied = updatedDesk.Occupied;
-                _context.SaveChanges();
-            }
-            return desk;
-        }
+        //public Desk? UpdateOccupied(Desk updatedDesk)
+        //{
+        //    var desk = _context.Desk.FirstOrDefault(d => d.Name == updatedDesk.Name);
+        //    if (desk != null)
+        //    {
+        //        desk.Occupied = updatedDesk.Occupied;
+        //        _context.SaveChanges();
+        //    }
+        //    return desk;
+        //}
     }
 }
