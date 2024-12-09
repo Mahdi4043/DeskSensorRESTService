@@ -10,7 +10,7 @@ namespace DeskSensorRESTService.Models
         public bool Occupied { get; set; }
 
         
-        public void validatepropperties()
+        public void validateName()
         {
             if (Name == null || Name.Length == 0)
             {

@@ -21,9 +21,9 @@ namespace DeskSensorRESTService.Models
         public Desk Add(Desk desk)
         {
             // Check if a desk with the same name already exists
-            var existingDesk = _context.Desk.FirstOrDefault(d => d.Name == desk.Name);
+            Desk existingDesk = _context.Desk.FirstOrDefault(d => d.Name == desk.Name);
 
-            if (existingDesk != null)
+            if (existingDesk != null )
             {
                 // Update the Occupied status of the existing desk
                 existingDesk.Occupied = desk.Occupied;
