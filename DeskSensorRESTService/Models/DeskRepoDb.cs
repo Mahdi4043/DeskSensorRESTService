@@ -78,7 +78,7 @@ namespace DeskSensorRESTService.Models
 
         public Desk? UpdateOccupied(Desk updatedDesk)
         {
-            var desk = _context.Desk.Find(updatedDesk);
+            var desk = _context.Desk.FirstOrDefault(d => d.Name == updatedDesk.Name);
             if (desk != null)
             {
                 desk.Occupied = updatedDesk.Occupied;
