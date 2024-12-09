@@ -84,15 +84,5 @@ namespace DeskSensorRESTService.Models
             return exsisting;
         }
 
-        //public Desk? UpdateOccupied(Desk updatedDesk)
-        //{
-        //    var desk = _context.Desk.FirstOrDefault(d => d.Name == updatedDesk.Name);
-        //    if (desk != null)
-        //    {
-        //        desk.Occupied = updatedDesk.Occupied;
-        //        _context.SaveChanges();
-        //    }
-        //    return desk;
-        //}
     }
 }
