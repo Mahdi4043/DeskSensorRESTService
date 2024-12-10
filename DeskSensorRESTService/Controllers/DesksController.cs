@@ -87,7 +87,7 @@ namespace DeskSensorRESTService.Controllers
             if (id != null)
             {
                 var Desk = _desks.GetById(id);
-                if (Desk.Id == null)
+                if (Desk.Id == 0)
                 {
                     return NotFound($"Desk with ID {id} not found.");
                 }
