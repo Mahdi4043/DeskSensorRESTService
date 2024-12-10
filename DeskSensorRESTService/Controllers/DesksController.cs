@@ -78,19 +78,23 @@ namespace DeskSensorRESTService.Controllers
             // Return NoContent (204) when the update is successful
             return NoContent();
         }
-
-        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //public IActionResult Delete(int id)
-        //{
-        //    if (id != null)
-        //    {
-        //        var Desk = _desks.GetById(id);
-        //        _desks.Delete(Desk.Id);
-        //        return Ok(Desk);
-        //    }
-
-        //    return NotFound($"Desk with ID {id} not found.");
-        //}
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpDelete("{id}")]
+        public ActionResult<Desk> Delete(int id)
+        {
+            if (id != null)
+            {
+                var Desk = _desks.GetById(id);
+                if (Desk.Id == 0)
+                {
+                    return NotFound($"Desk with ID {id} not found.");
+                }
+                _desks.Delete(Desk.Id);
+                return Ok(Desk);
+            }
+            return BadRequest("Id cannot be null.");
+        }
     }
 }
