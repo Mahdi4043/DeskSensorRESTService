@@ -78,7 +78,7 @@ namespace DeskSensorRESTService.Controllers
             // Return NoContent (204) when the update is successful
             return NoContent();
         }
-
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
