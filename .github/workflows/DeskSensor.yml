@@ -9,7 +9,6 @@ env:
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 8.0.x
   WORKING_DIRECTORY: DeskSensorRESTService
-  DATABASE_CONNECTION_STRING: ${{ secrets.CONNECTIONSTRING }}
 
 jobs:
   build:
@@ -48,5 +47,3 @@ jobs:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.DeskSensor_0715 }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-    - name: Set DATABASE_CONNECTION_STRING environment variable for application
-      run: echo "DATABASE_CONNECTION_STRING=${{ secrets.CONNECTIONSTRING }}" >> $GITHUB_ENV
