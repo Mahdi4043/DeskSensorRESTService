@@ -8,10 +8,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 var optionsBuilder = new DbContextOptionsBuilder<DeskDbContext>();
-//builder.Services.AddDbContext<DeskDbContext>(options =>
-//options.UseSqlServer(builder.Configuration.GetConnectionString("Data Source=mssql12.unoeuro.com;Initial Catalog=auden_dk_db_eksamen;User ID=auden_dk;Password=5pFwR4c9bfEDGe3Bdymh;TrustServerCertificate = True")));
 
-optionsBuilder.UseSqlServer("Data Source=mssql12.unoeuro.com;Initial Catalog=auden_dk_db_eksamen;User ID=auden_dk;Password=5pFwR4c9bfEDGe3Bdymh;TrustServerCertificate = True");
+string? connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRING");
+
+optionsBuilder.UseSqlServer(connectionString);
 DeskDbContext dbContext = new(optionsBuilder.Options);
 
 builder.Services.AddSingleton<DeskRepoDb>(new DeskRepoDb(dbContext));
