@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 
 var optionsBuilder = new DbContextOptionsBuilder<DeskDbContext>();
 
-string? connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRING");
+string? connectionString = Environment.GetEnvironmentVariable("DATABASE_CONNECTION_STRING");
 
 optionsBuilder.UseSqlServer(connectionString);
 DeskDbContext dbContext = new(optionsBuilder.Options);
