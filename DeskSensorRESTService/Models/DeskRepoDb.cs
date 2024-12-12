@@ -50,9 +50,9 @@ namespace DeskSensorRESTService.Models
 
         public Desk? GetById(int id)
         {
-            if(id == 0)
+            if(id < 0)
             {
-                throw new ArgumentException("Id cannot be 0.");  
+                throw new ArgumentException("Id cannot be below 0.");  
             }
 
             return _context.Desk.FirstOrDefault(m => m.Id == id);

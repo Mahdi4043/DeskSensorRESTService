@@ -78,7 +78,7 @@ namespace DeskSensorRESTService.Controllers
             // Return NoContent (204) when the update is successful
             return NoContent();
         }
-
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete("{id}")]
@@ -87,7 +87,7 @@ namespace DeskSensorRESTService.Controllers
             if (id != null)
             {
                 var Desk = _desks.GetById(id);
-                if (Desk.Id == null)
+                if (Desk.Id == 0)
                 {
                     return NotFound($"Desk with ID {id} not found.");
                 }
