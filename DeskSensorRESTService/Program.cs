@@ -15,7 +15,6 @@ optionsBuilder.UseSqlServer("Data Source=mssql12.unoeuro.com;Initial Catalog=aud
 DeskDbContext dbContext = new(optionsBuilder.Options);
 
 builder.Services.AddSingleton<DeskRepoDb>(new DeskRepoDb(dbContext));
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>

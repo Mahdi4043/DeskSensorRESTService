@@ -20,6 +20,7 @@ namespace DeskSensorRESTService.Models
 
         public Desk Add(Desk desk)
         {
+            desk.validateName();
             // Check if a desk with the same name already exists
             Desk existingDesk = _context.Desk.FirstOrDefault(d => d.Name == desk.Name);
 
@@ -70,9 +71,8 @@ namespace DeskSensorRESTService.Models
         }
 
         public Desk Update(int id, Desk updatedDesk)
-        // https://www.learnentityframeworkcore.com/dbcontext/modifying-data
+        
         {
-
             Desk? exsisting = GetById(id);
             if (exsisting == null)
             {
