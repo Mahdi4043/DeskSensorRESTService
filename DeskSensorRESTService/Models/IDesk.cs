@@ -1,6 +1,6 @@
 ﻿namespace DeskSensorRESTService.Models
 {
-    public interface IDesk
+    public interface IDesk 
     {
         Desk Add(Desk desk);
         List<Desk> Get();

@@ -1,10 +1,10 @@
 ﻿using DeskSensorRESTService.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-//NuGet Microsoft.EntityFrameworkCore.SqlServer
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -20,8 +20,7 @@ namespace DeskSensorRESTServiceTests.Models
         private static IDesk _repo;
         // https://learn.microsoft.com/en-us/dotnet/core/testing/order-unit-tests?pivots=mstest
 
-        //[ClassInitialize]
-        //public static void InitOnce(TestContext context)
+     
         [TestInitialize]
         public void Init()
         {
@@ -33,6 +32,7 @@ namespace DeskSensorRESTServiceTests.Models
                 optionsBuilder.UseSqlServer("Data Source=mssql12.unoeuro.com;Initial Catalog=auden_dk_db_eksamen;User ID=auden_dk;Password=5pFwR4c9bfEDGe3Bdymh;TrustServerCertificate = True");
 
                 DeskDbContext _dbContext = new(optionsBuilder.Options);
+              
                 // clean database table: remove all rows
                 _dbContext.Database.ExecuteSqlRaw("TRUNCATE TABLE dbo.Desk");
                 _repo = new DeskRepoDb(_dbContext);
@@ -47,7 +47,17 @@ namespace DeskSensorRESTServiceTests.Models
         [DoNotParallelize]
         public void AddTest()
         {
-            _repo.Add(new Desk { Name = "Desk 1", Occupied = true });
+            var deskFalse = _repo.Add(new Desk { Name = "", Occupied = true });
+            var deskTrue = _repo.Add(new Desk { Name = "TestTrue", Occupied = true });
+
+            //allowed
+            Assert.IsTrue(_repo.Get().Contains(deskTrue));
+            Assert.AreEqual("TestTrue", deskTrue.Name);
+            Assert.AreEqual(true, deskTrue.Occupied);
+
+            //not allowed
+            Assert.IsFalse(_repo.Get().Contains(deskFalse));
+            Assert.IsNull(ArgumentOutOfRangeException();
         }
 
         [TestMethod, Priority(2)]
@@ -55,11 +65,15 @@ namespace DeskSensorRESTServiceTests.Models
         {
             Desk m = _repo.Add(new Desk { Name = "Desk1", Occupied = true });
             Desk? desk = _repo.GetById(m.Id);
+
+            // allowed
             Assert.IsNotNull(desk);
             Assert.AreEqual("Desk1", desk.Name);
             Assert.AreEqual(true, desk.Occupied);
 
+            //not allowed
             Assert.IsNull(_repo.GetById(-1));
+            Assert.IsTrue
         }
         [TestMethod, Priority(3)]
         [DoNotParallelize]
@@ -84,7 +98,5 @@ namespace DeskSensorRESTServiceTests.Models
             Desk? desk2 = _repo.GetById(m.Id);
             Assert.AreEqual(false, desk.Occupied);
         }
-
-
     }
 }

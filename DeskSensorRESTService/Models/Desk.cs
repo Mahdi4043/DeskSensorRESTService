@@ -3,7 +3,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace DeskSensorRESTService.Models
 {
-    public class Desk
+    public class Desk 
     {
         public int Id { get; set; }
         public string? Name { get; set; }
