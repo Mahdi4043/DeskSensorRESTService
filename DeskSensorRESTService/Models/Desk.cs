@@ -9,14 +9,13 @@ namespace DeskSensorRESTService.Models
         public string? Name { get; set; }
         public bool Occupied { get; set; }
 
-        
+
         public void validateName()
         {
             if (Name == null || Name.Length == 0)
             {
-                throw new ArgumentException("Name cannot be null or empty.");
+                throw new ArgumentOutOfRangeException( "Desk name cannot be empty.");
             }
-
         }
 
         public override string ToString()

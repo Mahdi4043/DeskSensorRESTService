@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Numerics;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,7 +48,6 @@ namespace DeskSensorRESTServiceTests.Models
         [DoNotParallelize]
         public void AddTest()
         {
-            var deskFalse = _repo.Add(new Desk { Name = "", Occupied = true });
             var deskTrue = _repo.Add(new Desk { Name = "TestTrue", Occupied = true });
 
             //allowed
@@ -56,8 +56,8 @@ namespace DeskSensorRESTServiceTests.Models
             Assert.AreEqual(true, deskTrue.Occupied);
 
             //not allowed
-            Assert.IsFalse(_repo.Get().Contains(deskFalse));
-            Assert.IsNull(ArgumentOutOfRangeException();
+           
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _repo.Add(new Desk { Name = "", Occupied = true }));
         }
 
         [TestMethod, Priority(2)]
@@ -72,8 +72,9 @@ namespace DeskSensorRESTServiceTests.Models
             Assert.AreEqual(true, desk.Occupied);
 
             //not allowed
-            Assert.IsNull(_repo.GetById(-1));
-            Assert.IsTrue
+            //Assert.IsNull(_repo.GetById(-1));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => _repo.GetById(-1));
+
         }
         [TestMethod, Priority(3)]
         [DoNotParallelize]

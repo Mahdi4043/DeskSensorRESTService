@@ -52,7 +52,7 @@ namespace DeskSensorRESTService.Models
         {
             if(id < 0)
             {
-                throw new ArgumentException("Id cannot be below 0.");  
+                throw new ArgumentOutOfRangeException("Id cannot be below 0.");  
             }
 
             return _context.Desk.FirstOrDefault(m => m.Id == id);
